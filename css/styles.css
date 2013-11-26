@@ -1,10 +1,22 @@
 /*==============================
 	Global
 ==============================*/
-p{
-	line-height: 1.5em;
+@font-face {
+    font-family: 'diner-regularregular';
+    src: url('../fonts/Diner-Regular-webfont.eot');
+    src: url('../fonts/Diner-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Diner-Regular-webfont.woff') format('woff'),
+         url('../fonts/Diner-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Diner-Regular-webfont.svg#diner-regularregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
+p {
+	line-height: 24px;
+}
+ 
 /*==============================
 	Structure & Layout 
 ==============================*/
@@ -12,17 +24,18 @@ p{
 	margin: 0 auto;
 	width: 960px;
 }
-
+ 
+/* Push down content below navigation */
 article {
- 	padding-top: 200px; /*pushing down so the content starting with CSS doesn't collapse*/	
+	padding-top: 200px;
 }
-
+ 
 /*==============================
 	Logo
 ==============================*/
 header h1 a {
-	background: #ccc url("../img/logo.png") no-repeat center center; /*horizontal and verticle*/
-	border-radius: 50%;
+	background: #ccc url("../img/logo.png") no-repeat center center;
+	border-radius: 150px;
 	border: 4px solid #fff;
 	display: block;
 	height: 150px;
@@ -30,42 +43,40 @@ header h1 a {
 	position: absolute;
 	text-indent: -999em;
 	width: 150px;
-	z-index: 1;
-
+	z-index: 2;
 	
 	/* CSS 3*/
-	-webkit-transition: background .25s;
-
+	transition: background-color 1s;
 }
-
+ 
 header h1 a:hover {
 	background: #666 url("../img/logo.png") no-repeat center center;
 }
-
-
+ 
+ 
 /*==============================
 	Navigation
 ==============================*/
 header {
 	position: relative;
 }
-
+ 
 header li {
 	float: left;
 	list-style: none;
 	margin: 0 10px;
 }
-
+ 
 /* Remove inherited margin on <ul> */
 header ul {
 	margin: 0;
 }
-
+ 
 /* Push links far right w/o floats */
 nav li:nth-child(1) {
 	margin-left: 450px;
 }
-
+ 
 nav {
 	background: #666;	
 	height: 64px;
@@ -75,11 +86,9 @@ nav {
 	width: 960px;
 	
 	/* CSS3 */
-	
-	box-shadow: inset -1px 0px 44px 0px rgba(0,0,0,0.27);
-
+	box-shadow: inset 0px 0px 10px 2px #333;
 }
-
+ 
 nav a:link,
 nav a:visited {
 	color: #fff;
@@ -92,26 +101,35 @@ nav a:visited {
 	width: 128px;
 	
 	/*CSS 3*/
-	transition: margin-top .25s ease-in /*slow to get started*/;
-
+	transition: margin-top .25s;
 }
-
+ 
 nav a:hover, 
 nav a:active {
 	margin-top: 10px;
 }
 
 
+/* Contact */
+ nav li:nth-child(3) a:link{
+ 	background: url('../img/sprite.png') no-repeat 0 19px;
+ }
+ 
+  nav li:nth-child(3) a:hover{
+ 	background: url('../img/sprite.png') no-repeat 0 -46px;
+ }
+ 
+ 
 /*==============================
 	Navigation: Page Indicators
 ==============================*/
-.about li:nth-child(1) a, 
-.students li:nth-child(2) a,
-.contact li li:nth-child(3) a { /*BE SPECIFIC SO LOGO DOESN'T DISAPPEAR*/
+.about li:nth-child(1), 
+.students li:nth-child(2),
+.contact li:nth-child(3){
 	background: rgba(255,255,255,.15);
 }
-
-
+ 
+ 
 /*==============================
 	About Page
 ==============================*/
@@ -120,11 +138,14 @@ nav a:active {
 	margin-left: 40px;
 	width: 420px;
 }
-
+ 
 .about section h2 {
+	font-family: 'diner-regularregular', sans-serif;
+	letter-spacing: 8px;
+	font-size: 2.5em;
 	margin-left: -40px;
 }
-
+ 
 /*==============================
 	Students Page
 ==============================*/
@@ -147,7 +168,7 @@ nav a:active {
 	/* CSS 3*/
 	box-shadow: 0 10px 20px #222;
 }
-
+ 
 /* Ribbon Triangle */
 .members h3:after {
 	content: "";
@@ -159,13 +180,14 @@ nav a:active {
 	bottom: -39px;
 	border-width: 20px;
 	z-index: -1;
+	
 }
-
+ 
 .members img {
 	width: 420px;
 }
-
-
+ 
+ 
 /*==============================
 	Contact Page
 ==============================*/
@@ -174,15 +196,63 @@ nav a:active {
 	margin-left: 10px;
 	width: 310px;
 }
-
+ 
 .contact td {
 	padding: 10px 4px;
 }
-
-.contact tr  {
+ 
+.contact tr:nth-child(even)  {
 	background: #ccc;
 }
-
+ 
 label {
-
+	display: block;
+}
+ 
+/*==============================
+	Gallery
+==============================*/
+ 
+ /* Headings */
+ .gallery figure h1 {
+	color: orange;
+	position: absolute;
+	right: 0;
+	
+}
+ 
+.gallery .control-button {
+  color: #ccc;
+  color: rgba(255, 255, 255, 0.4);
+}
+ 
+.gallery .control-button:hover {
+  color: white;
+  color: rgba(255, 255, 255, 0.8);
+}
+ 
+/*
+	Theme controls how everything looks in Gallery CSS.
+*/
+.gallery {
+  position: relative;
+}
+.gallery .item {
+  height: 400px;
+  overflow: hidden;
+  text-align: center;
+}
+.gallery .controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.gallery .control-button {
+  display: inline-block;
+  margin: 0 .02em;
+  font-size: 3em;
+  text-align: center;
+  text-decoration: none;
+  transition: color .1s;
 }
